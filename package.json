@@ -1,0 +1,19 @@
+{
+  "name": "node-red-contrib-openweather",
+  "version": "0.1.0",
+  "description": "NodeRED nodes.",
+  "node-red": {
+    "nodes": {
+      "thingboard": "node/node.js"
+    }
+  },
+  "license": "MIT",
+  "keywords": [
+    "node-red",
+    "thingboard",
+    "iot"
+  ],
+  "dependencies": {
+    "request": ""
+  }
+}

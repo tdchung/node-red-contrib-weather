@@ -1,0 +1,111 @@
+<script type="text/javascript">
+  RED.nodes.registerType("openweather", {
+    category: "openweather",
+    color: "#B9B6B8",
+    defaults: {
+      name: { value: "" },
+      lon: {
+        value: "",
+        validate: function (v) {
+          return v >= -180 && v <= 180;
+        },
+        required: true,
+      },
+      lat: {
+        value: "",
+        validate: function (v) {
+          return v >= -90 && v <= 90;
+        },
+        required: true,
+      },
+      cloud: {
+        value: "",
+        validate: function (v) {
+          return v >= 0 && v <= 100;
+        },
+        required: true,
+      },
+      battery: {
+        value: "",
+        validate: function (v) {
+          return v >= 0 && v <= 100;
+        },
+        required: true,
+      },
+      repeat: { value: 1, required: true },
+    },
+
+    credentials: {
+      apikey: { type: "password", required: true },
+    },
+
+    inputs: 1,
+    outputs: 1,
+
+    icon: "icon.png",
+    paletteLabel: "openweather",
+
+    label: function () {
+      return this.name || this.to || "openweather";
+    },
+    labelStyle: function () {
+      return this.name ? "node_label_italic" : "";
+    },
+  });
+</script>
+
+<script type="text/x-red" data-template-name="openweather">
+
+    <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Node Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-apikey"><i class="fa fa-cog"></i> API key</label>
+        <input  type="password" id="node-input-apikey" placeholder="Secret API key" style="width:calc(70% - 1px)">
+    </div>
+    <div class="form-row">
+        <label for="node-input-cloud"><i class="fa fa-cog"></i> Cloud Level</label>
+        <input type="text" id="node-input-cloud" placeholder="Cloud Level" style="width:calc(70% - 1px)">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-cloud"><i class="fa fa-cog"></i> battery state</label>
+        <input type="text" id="node-input-battery" placeholder="battery state" style="width:calc(70% - 1px)">
+    </div>
+
+    <div class="form-row">
+      <label for="node-input-repeat"><i class="fa fa-cog"></i> Repeat (Min)</label>
+      <input type="text" id="node-input-repeat" placeholder="minutes" style="width:calc(70% - 1px)">
+  </div>
+
+
+
+    <!-- <div class="form-row">
+      <label for="weather-location-select"><i class="fa fa-globe"></i> Location</label>
+      <select id="weather-location-select" style="width:300px">
+          <option value="city">city</option>
+          <option value="coordinates">coordinates</option>
+      </select>
+    </div> -->
+
+    <div class="form-row">
+      <label style="width: 140px !important;"><h5><strong>Location Settings</strong></h5></label>
+    </div>
+    <div class="form-row weather-location-type-coordinates">
+        <label for="node-input-lat"><i class="fa fa-cog"></i> latitude</label>
+        <input type="text" id="node-input-lat" placeholder="latitude"  style="width: 180px; margin-bottom:7px">
+        </br>
+        <label for="node-input-lon"><i class="fa fa-cog"></i> longitude</label>
+        <input type="text" id="node-input-lon" placeholder="longitude"  style="width: 180px; margin-bottom:7px" >
+    </div>
+
+    <div class="form-tips">
+      <p><b>Note</b>: Openweather demo. tdchung.9@gmail.com
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="openweather">
+  <p>A Node to control the output relay to charge</p>
+</script>
